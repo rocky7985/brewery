@@ -1,0 +1,73 @@
+/* Spinner Styles */
+.spinner-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    /* Ensure it is above other elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.backbtn {
+    margin-left: 15px;
+}
+
+ion-spinner {
+    --spinner-color: #000000;
+    /* Dark black color */
+    --width: 64px;
+    /* Bigger size */
+    --height: 64px;
+    /* Bigger size */
+    font-weight: bold;
+    /* Make it bolder */
+}
+
+/* General Styles */
+.label-custom {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-custom::placeholder {
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.title-center {
+    text-align: center;
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    color: blue;
+}
+
+ion-icon {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+ion-buttons ion-icon {
+    font-size: 2.5em;
+    margin: 0 10px;
+}
+
+ion-buttons ion-icon:hover {
+    color: #ff5c5c;
+    cursor: pointer;
+}
+
+.sign-up ion-button {
+    margin: 0;
+}

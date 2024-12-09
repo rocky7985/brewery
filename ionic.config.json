@@ -1,0 +1,7 @@
+{
+  "name": "carsApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

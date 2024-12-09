@@ -1,0 +1,100 @@
+/* Styling for Welcome Section */
+.welcome-section {
+  background-color: #f7f7f7;
+  padding: 15px;
+  text-align: center;
+}
+
+.welcome-text h2 {
+  font-size: 1.8rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.welcome-text p {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* Styling for Spinner */
+.custom-spinner {
+  --width: 50px;
+  /* Larger size */
+  --height: 50px;
+  /* Larger size */
+  --spinner-color: #ff6347;
+  /* Choose a color */
+  margin-top: 20px;
+  /* Positioning the spinner */
+  transform: scale(1.5);
+  /* Make it bolder */
+}
+
+/* Styling for search result items */
+ion-list {
+  margin: 0;
+  padding: 0;
+}
+
+/* Styling for ion-item in Search Results */
+ion-item {
+  --background: #fff;
+  --inner-padding-top: 10px;
+  --inner-padding-bottom: 10px;
+  --border-radius: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.result-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+ion-label p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 3px 0;
+}
+
+ion-label p ion-icon {
+  font-size: 1rem;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+ion-label p a {
+  text-decoration: none;
+  color: #007aff;
+  /* Link color */
+}
+
+ion-label p a:hover {
+  text-decoration: underline;
+}
+
+/* Scrollable Results Section */
+.scrollable-results {
+  max-height: calc(100vh - 250px);
+  /* Adjust height to fit screen */
+  overflow-y: auto;
+  padding-top: 10px;
+}
+
+
+/* Styling for Header Title */
+ion-title {
+  font-size: 24px;
+  /* Increase the font size */
+  font-weight: bold;
+  /* Make the font bolder */
+  color: #333;
+  /* Title color */
+  text-transform: uppercase;
+  /* Optional: Make title uppercase */
+  letter-spacing: 2px;
+  /* Add spacing between letters */
+}

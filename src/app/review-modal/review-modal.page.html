@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Write a Review</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+
+    <!-- Star Rating Section -->
+    <ion-item>
+      <ion-label position="stacked" class="custom-label">Rating</ion-label>
+      <div class="star-rating">
+        <ion-icon *ngFor="let star of [0, 1, 2, 3, 4]; let i = index"
+          [name]="i < reviewForm.value.rating ? 'star' : 'star-outline'" (click)="setRating(i)" class="star-icon">
+        </ion-icon>
+      </div>
+    </ion-item>
+
+    <!-- Review Description Section -->
+    <ion-item>
+      <ion-label position="stacked" class="custom-label">Description</ion-label>
+      <ion-textarea formControlName="description" rows="6" placeholder="Write your review here..."></ion-textarea>
+    </ion-item>
+
+    <!-- Spinner and Submit Button -->
+    <div class="button-container">
+      <ion-button expand="full" type="submit" [disabled]="loading || !reviewForm.valid">
+        <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        <span *ngIf="!loading">Submit Review</span>
+      </ion-button>
+    </div>
+  </form>
+</ion-content>
