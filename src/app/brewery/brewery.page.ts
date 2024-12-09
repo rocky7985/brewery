@@ -7,9 +7,10 @@ import { ModalController } from '@ionic/angular';
 import { ReviewModalPage } from '../review-modal/review-modal.page';
 
 @Component({
-  selector: 'app-brewery',
-  templateUrl: './brewery.page.html',
-  styleUrls: ['./brewery.page.scss'],
+    selector: 'app-brewery',
+    templateUrl: './brewery.page.html',
+    styleUrls: ['./brewery.page.scss'],
+    standalone: false
 })
 export class BreweryPage {
   breweryId: string = '';

@@ -5,9 +5,10 @@ import { CommonService } from '../common.service';
 import { StorageService } from '../storage.service';
 
 @Component({
-  selector: 'app-review-modal',
-  templateUrl: './review-modal.page.html',
-  styleUrls: ['./review-modal.page.scss'],
+    selector: 'app-review-modal',
+    templateUrl: './review-modal.page.html',
+    styleUrls: ['./review-modal.page.scss'],
+    standalone: false
 })
 export class ReviewModalPage {
   @Input()
