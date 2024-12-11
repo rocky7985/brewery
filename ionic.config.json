@@ -1,0 +1,7 @@
+{
+  "name": "brewery",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
