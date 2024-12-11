@@ -1,0 +1,147 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon name="arrow-back-outline" (click)="goToWelcome()" class="backbtn"></ion-icon>
+    </ion-buttons>
+    <ion-title class="title-center">Signup</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div class="spinner-container" *ngIf="isSubmit">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+
+  <form [formGroup]="signupForm" (ngSubmit)="signup(signupForm.value)">
+    <ion-grid>
+      <ion-row class="page-container">
+        <ion-col size="12">
+          <ion-item>
+            <ion-label position="stacked" class="label-custom">Name</ion-label>
+            <ion-input type="text" formControlName="name" placeholder="Enter your Name" maxlength="20"></ion-input>
+            <ion-note
+              *ngIf="signupForm.get('name')?.hasError('required') && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Name is required.
+            </ion-note>
+            <ion-note
+              *ngIf="signupForm.get('name')?.hasError('pattern') && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Name must start with a capital letter and contain only letters.
+            </ion-note>
+          </ion-item>
+
+          <!-- Email Input -->
+          <ion-item>
+            <ion-label position="stacked" class="label-custom">Email</ion-label>
+            <ion-input formControlName="email" placeholder="Enter your Email Id" maxlength="20"></ion-input>
+            <ion-note
+              *ngIf="signupForm.get('email')?.hasError('required') && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Email is required.
+            </ion-note>
+            <ion-note
+              *ngIf="signupForm.get('email')?.hasError('pattern') && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Email must start with a small letter and contain only 1 special character.
+            </ion-note>
+          </ion-item>
+
+          <!-- Phone Input -->
+          <ion-item>
+            <ion-label position="stacked" class="label-custom">Phone</ion-label>
+            <ion-input type="text" formControlName="phone" placeholder="Enter your Phone No." maxlength="10"
+              inputmode="numeric"></ion-input>
+            <ion-note
+              *ngIf="signupForm.get('phone')?.hasError('required') && (signupForm.get('phone')?.dirty || signupForm.get('phone')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Phone No. is required.
+            </ion-note>
+            <ion-note
+              *ngIf="signupForm.get('phone')?.hasError('pattern') && (signupForm.get('phone')?.dirty || signupForm.get('phone')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Phone No. start with whole numbers and no special char. allowed.
+            </ion-note>
+            <ion-note
+              *ngIf="signupForm.get('phone')?.hasError('minlength') && (signupForm.get('phone')?.dirty || signupForm.get('phone')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Phone No. must be exactly 10 digits.
+            </ion-note>
+          </ion-item>
+
+          <!-- Address Input -->
+          <ion-item>
+            <ion-label position="stacked" class="label-custom">Address</ion-label>
+            <ion-input formControlName="address" type="text" placeholder="Enter your Address"
+              maxlength="30"></ion-input>
+            <ion-note
+              *ngIf="signupForm.get('address')?.hasError('required') && (signupForm.get('address')?.dirty || signupForm.get('address')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Address is required.
+            </ion-note>
+          </ion-item>
+
+          <!-- Password Input -->
+          <ion-item>
+            <ion-label position="stacked" class="label-custom">Password</ion-label>
+            <ion-input [type]="showPassword ? 'text' : 'password'" formControlName="password"
+              placeholder="Enter your Password" maxlength="15"></ion-input>
+            <ion-icon slot="end" [name]="showPassword ? 'eye-outline' : 'eye-off-outline'"
+              (click)="toggleShowPassword()"></ion-icon>
+            <ion-note
+              *ngIf="signupForm.get('password')?.hasError('required') && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Password is required.
+            </ion-note>
+            <ion-note
+              *ngIf="signupForm.get('password')?.hasError('pattern') && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Password must contain at least one uppercase, one lowercase letter, one number, and one special character.
+            </ion-note>
+          </ion-item>
+
+          <!-- Confirm Password Input -->
+          <ion-item>
+            <ion-label position="stacked" class="label-custom">Confirm Password</ion-label>
+            <ion-input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword"
+              placeholder="Enter Confirm Password" maxlength="15"></ion-input>
+            <ion-icon slot="end" [name]="showConfirmPassword ? 'eye-outline' : 'eye-off-outline'"
+              (click)="toggleShowConfirmPassword()"></ion-icon>
+            <ion-note
+              *ngIf="signupForm.get('confirmPassword')?.hasError('required') && (signupForm.get('confirmPassword')?.dirty || signupForm.get('confirmPassword')?.touched)"
+              color="danger">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              Confirm Password is required.
+            </ion-note>
+          </ion-item>
+
+          <!-- Password Mismatch -->
+          <ion-text color="danger" *ngIf="signupForm.hasError('passwordNotMatch')">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            Password and Confirm Password fields must match.
+          </ion-text>
+
+          <!-- Submit Button -->
+          <ion-button expand="block" class="main-button" type="submit"
+            [disabled]="signupForm.invalid || signupForm.hasError('passwordNotMatch')">
+            Sign Up
+          </ion-button>
+        </ion-col>
+        <ion-col class="sign-up">
+          Already have an account? <ion-button color="dark" fill="clear" (click)="goToLogin()">Sign in</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

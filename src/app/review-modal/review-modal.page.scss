@@ -1,0 +1,85 @@
+/* Page Styling */
+ion-header {
+    --background: #f8f9fa;
+    --border-color: #e0e0e0;
+}
+
+ion-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Star Rating Styling */
+.star-rating {
+    font-size: 24px;
+    color: #d3d3d3;
+    /* Default empty star color */
+}
+
+.star-rating .star-icon {
+    cursor: pointer;
+    color: #ffcc00;
+    /* Yellow color for filled stars */
+    margin-right: 5px;
+}
+
+/* Description Styling */
+ion-textarea {
+    --background: #f7f7f7;
+    --border-radius: 10px;
+    --padding-start: 15px;
+    --padding-end: 15px;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ion-item {
+    --background: transparent;
+    margin-bottom: 15px;
+}
+
+ion-label {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+/* Submit Button */
+.button-container ion-button {
+    --background: #007aff;
+    /* Blue background */
+    --color: #fff;
+    /* White text */
+    font-size: 1.2rem;
+    font-weight: bold;
+    --border-radius: 20px;
+    text-transform: uppercase;
+}
+
+.button-container ion-button[disabled] {
+    opacity: 0.6;
+}
+
+/* Spinner Styling */
+ion-spinner {
+    --spinner-color: #fff;
+    --width: 24px;
+    --height: 24px;
+}
+
+/* General Layout Adjustments */
+ion-content {
+    padding: 15px;
+    --background: #fff;
+}
+
+.custom-label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}

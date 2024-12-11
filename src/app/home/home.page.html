@@ -1,20 +1,113 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Brewery Guy</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <!-- Welcome Section (Fixed) -->
+    <ion-row class="welcome-section">
+      <ion-col size="12">
+        <ion-text class="welcome-text">
+          <h2>Welcome to Brewery Explorer!</h2>
+          <p>Start your adventure by searching for breweries in your area.</p>
+          <p>Enjoy discovering new spots, and always explore responsibly!
+            <ion-icon name="wine-outline" color="warning"></ion-icon>
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <!-- Search Bar Section (Fixed) -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="none">
+          <ion-searchbar [(ngModel)]="searchQuery" (ionInput)="onSearchChange($event)" (ionClear)="onSearchClear()"
+            debounce="1000" placeholder="Search for breweries by name, city, or state">
+            <ion-icon name="search-outline" slot="start"></ion-icon>
+            <ion-icon name="filter-outline" slot="end" (click)="presentPopover($event)"></ion-icon>
+          </ion-searchbar>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <!-- Spinner Section (Conditionally Displayed) -->
+    <ion-row *ngIf="loadSearchData">
+      <ion-col size="12" class="ion-text-center">
+        <ion-spinner name="crescent" class="custom-spinner"></ion-spinner>
+      </ion-col>
+    </ion-row>
+
+    <!-- Filter Popover Section -->
+    <ion-row>
+      <ion-col size="12">
+        <ion-popover #popover [isOpen]="isPopoverOpen" (didDismiss)="isPopoverOpen = false" [dismissOnSelect]="true">
+          <ng-template>
+            <ion-list>
+              <ion-item button (click)="onFilterChange('by_city'); isPopoverOpen = false">
+                Search by City
+              </ion-item>
+              <ion-item button (click)="onFilterChange('by_name'); isPopoverOpen = false">
+                Search by Name
+              </ion-item>
+              <ion-item button (click)="onFilterChange('by_type'); isPopoverOpen = false">
+                Search by Type
+              </ion-item>
+              <ion-item lines="none" (click)="isPopoverOpen = false">
+                <ion-button expand="block" fill="clear">Close</ion-button>
+              </ion-item>
+            </ion-list>
+          </ng-template>
+        </ion-popover>
+      </ion-col>
+    </ion-row>
+
+    <!-- Search Results Section (Scrollable) -->
+    <ion-row class="scrollable-results" *ngIf="!loadSearchData && searchResults.length">
+      <ion-col size="12">
+        <ion-list>
+          <ion-item *ngFor="let result of searchResults; let i = index" button (click)="navigateToBrewery(result.id)"
+            lines="full">
+            <ion-icon name="beer-outline" slot="start" color="warning"></ion-icon>
+            <ion-label>
+              <!-- Brewery Name -->
+              <h2 class="result-title">{{ result.name }}</h2>
+              <!-- Address -->
+              <p>{{ result.address_1 }}, {{ result.city }}, {{ result.state }}</p>
+              <!-- Phone Number -->
+              <p *ngIf="result.phone">
+                <ion-icon name="call-outline" slot="start" color="dark"></ion-icon>
+                <span>{{ result.phone }}</span>
+              </p>
+              <!-- Website URL -->
+              <p *ngIf="result.website_url">
+                <ion-icon name="globe-outline" slot="start" color="tertiary"></ion-icon>
+                <a [href]="result.website_url" target="_blank">{{ result.website_url }}</a>
+              </p>
+            </ion-label>
+            <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <!-- Infinite Scroll -->
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content loadingSpinner="bubbles"
+        loadingText="Loading more breweries..."></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+    <!-- No Results Section -->
+    <ion-row *ngIf="!loadSearchData && !searchResults.length">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text>No results found. Try refining your search.</ion-text>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

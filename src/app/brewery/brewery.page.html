@@ -1,0 +1,140 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-button (click)="goToHome()">
+      <ion-icon name="arrow-back-outline" class="back-icon"></ion-icon>
+    </ion-button>
+    <ion-title>Brewery Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Spinner -->
+  <div *ngIf="loading" class="spinner-container">
+    <ion-spinner class="loading-spinner" name="bubbles"></ion-spinner>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!loading && breweryDetails && breweryReviews !== undefined">
+    <!-- Brewery Details Section -->
+    <ion-card *ngIf="breweryDetails">
+      <ion-card-header>
+        <ion-card-title class="brewery-name">{{ breweryDetails.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-grid>
+
+          <!-- Brewery Type -->
+          <ion-row>
+            <ion-col size="7">
+              <ion-item lines="none">
+                <ion-label>Brewery Type:</ion-label>
+                <ion-text>{{ breweryDetails.brewery_type }}</ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+
+          <!-- Address -->
+          <ion-row>
+            <ion-col>
+              <ion-item lines="none">
+                <ion-icon name="pin-outline" slot="start" color="danger"></ion-icon>
+                <ion-text class="detail-text">
+                  {{ breweryDetails.street }},
+                  {{ breweryDetails.city }},
+                  {{ breweryDetails.state }},
+                  {{ breweryDetails.postal_code }},
+                  {{ breweryDetails.country }}
+                </ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Latitude & Longitude -->
+          <ion-row *ngIf="breweryDetails.latitude && breweryDetails.longitude">
+            <ion-col>
+              <ion-item lines="none">
+                <ion-icon name="compass-outline" slot="start" color="primary"></ion-icon>
+                <ion-text class="detail-text">
+                  Latitude: {{ breweryDetails.latitude }},
+                  Longitude: {{ breweryDetails.longitude }}
+                </ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Phone -->
+          <ion-row *ngIf="breweryDetails.phone">
+            <ion-col>
+              <ion-item lines="none">
+                <ion-icon name="call-outline" slot="start" color="dark"></ion-icon>
+                <ion-text class="detail-text">{{ breweryDetails.phone }}</ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+
+          <!-- Website -->
+          <ion-row *ngIf="breweryDetails.website_url">
+            <ion-col>
+              <ion-item lines="none">
+                <ion-icon name="globe-outline" slot="start" color="tertiary"></ion-icon>
+                <ion-text class="detail-text">
+                  <a [href]="breweryDetails.website_url" target="_blank">{{ breweryDetails.website_url }}</a>
+                </ion-text>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Reviews Section, shown only after details are loaded -->
+    <ion-card *ngIf="breweryReviews.length > 0">
+      <ion-card-header>
+        <ion-card-title>Reviews</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let review of breweryReviews" lines="none">
+            <ion-grid>
+              <ion-row>
+                <!-- User's Avatar -->
+                <ion-col size="2" class="ion-align-self-start">
+                  <ion-avatar>
+                    <img [src]="'assets/avatar-placeholder.png'" alt="User Avatar" />
+                  </ion-avatar>
+                </ion-col>
+                <!-- Review Content -->
+                <ion-col size="10">
+                  <ion-text>
+                    <h3><strong>{{ review.user_name }}</strong></h3>
+                    <!-- Star Rating -->
+                    <div class="star-rating">
+                      <ion-icon *ngFor="let star of [0, 1, 2, 3, 4]; let i = index"
+                        [name]="i < review.rating ? 'star' : 'star-outline'" class="star-icon">
+                      </ion-icon>
+                    </div>
+                    <!-- Review Description -->
+                    <p>{{ review.description }}</p>
+                  </ion-text>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- No Reviews -->
+    <ion-row *ngIf="breweryReviews.length === 0">
+      <ion-col size="12" class="ion-text-center">
+        <ion-text>No reviews available for this brewery</ion-text>
+      </ion-col>
+    </ion-row>
+
+    <!-- Write Review Button -->
+    <ion-footer class="write-review-footer">
+      <ion-button expand="full" (click)="openReviewModal()">Write Review</ion-button>
+    </ion-footer>
+  </div>
+</ion-content>

@@ -35,3 +35,154 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* Custom Theme Variables for Beer-Themed App */
+:root {
+    /* Primary Theme Colors */
+    --ion-color-primary: #ffc107;
+    /* Beer-like yellow */
+    --ion-color-primary-rgb: 255, 193, 7;
+    --ion-color-primary-contrast: #000;
+    --ion-color-primary-contrast-rgb: 0, 0, 0;
+    --ion-color-primary-shade: #e0a800;
+    --ion-color-primary-tint: #ffcd38;
+
+    /* Background Color */
+    --ion-background-color: #fffbe6;
+    /* Light yellow */
+    --ion-background-color-rgb: 255, 251, 230;
+
+    /* Text Colors */
+    --ion-text-color: #333;
+    /* Dark gray */
+    --ion-text-color-rgb: 51, 51, 51;
+
+    /* Accent Colors */
+    --ion-color-secondary: #f8f9fa;
+    /* Neutral light gray */
+    --ion-color-tertiary: #6c757d;
+    /* Neutral gray for accents */
+    --ion-color-warning: #ffcc00;
+    /* Bright yellow for accents */
+}
+
+/* Global App Styling */
+body {
+    font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    --ion-font-family: 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--ion-background-color);
+    color: var(--ion-text-color);
+}
+
+/* Toolbar Styling */
+ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    --border-color: var(--ion-color-primary-shade);
+}
+
+/* Buttons */
+ion-button {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    --border-radius: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+ion-button[disabled] {
+    opacity: 0.7;
+}
+
+/* Cards */
+ion-card {
+    --background: #fff;
+    --border-radius: 10px;
+    --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Input Fields */
+ion-input,
+ion-textarea,
+ion-searchbar {
+    --background: #fff;
+    --border-color: var(--ion-color-primary);
+    --border-width: 2px;
+    --border-radius: 8px;
+    --padding-start: 10px;
+    --padding-end: 10px;
+}
+
+/* Labels */
+ion-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--ion-text-color);
+}
+
+/* Links */
+a {
+    color: var(--ion-color-primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Spinners */
+ion-spinner {
+    --spinner-color: var(--ion-color-warning);
+}
+
+/* Modals and Popovers */
+ion-modal,
+ion-popover {
+    --background: var(--ion-background-color);
+    --color: var(--ion-text-color);
+    --border-radius: 20px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    ion-label {
+        font-size: 1rem;
+    }
+
+    ion-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* Menu Button Styling */
+ion-menu-button {
+    --color: var(--ion-color-primary);
+    /* Primary color for the icon */
+    --icon-size: 28px;
+    /* Larger size for better visibility */
+    --background: rgba(255, 255, 255, 0.8);
+    /* Light background for contrast */
+    --border-radius: 50%;
+    /* Circular button */
+    --padding: 8px;
+    /* Add padding inside the button */
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+    width: 48px;
+    /* Fixed width for circular shape */
+    height: 48px;
+    /* Fixed height for circular shape */
+}
+
+/* Hover and Active States */
+ion-menu-button:hover {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+    /* Contrast color on hover */
+}
+
+ion-menu-button:active {
+    transform: scale(0.95);
+    /* Subtle shrink effect when pressed */
+}
