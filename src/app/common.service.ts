@@ -13,8 +13,8 @@ import { AlertController } from '@ionic/angular';
 export class CommonService {
 
   private isMenuEnabled = new Subject<boolean>();
-  baseUrl = 'http://localhost/wordpress/'; // Update this with your actual WordPress site URL
-  url = 'http://localhost/wordpress/wp-json/addapi/v1/';
+  baseUrl = 'https://cars-wp.onrender.com'; // Live WordPress site URL
+  url = 'https://cars-wp.onrender.com/wp-json/addapi/v1/'; // API endpoint for your WordPress backend
   private loader!: HTMLIonLoadingElement;
 
   constructor(
